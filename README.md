@@ -6,6 +6,13 @@
   <img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white"/>
 </p>
 
+<p align="center">
+  📚 <b>Dokumentasi In Website:</b>  
+  <a href="https://documentation-triadu.vercel.app/" target="_blank">
+    documentation-triadu.vercel.app
+  </a>
+</p>
+
 <hr>
 
 <h2>📖 Deskripsi Proyek</h2>

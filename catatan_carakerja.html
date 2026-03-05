@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation | TRIADU - Sistem Pengaduan Sarana Sekolah</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/id/f/fb/Smk_tritech.png" type="image/png">
+
+    <style>
+        :root {
+            --primary: #DD4814;
+            --primary-dark: #b53910;
+            --accent: #005C84;
+            --glass: rgba(255, 255, 255, 0.92);
+            --dark: #0f172a;
+            --gradient: linear-gradient(135deg, #DD4814, #005C84);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(180deg, #f8fafc 0%, #e0f2fe 100%);
+            color: #334155;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 999px; }
+
+        /* Hero Section - More Dynamic */
+        .hero-wrapper {
+            background: linear-gradient(135deg, var(--dark) 0%, #1e293b 50%, #0f172a 100%);
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            color: white;
+            padding: 120px 0 80px;
+            clip-path: polygon(0 0, 100% 0, 100% 88%, 0% 100%);
+            overflow: hidden;
+        }
+        .hero-circle {
+            position: absolute;
+            background: var(--primary);
+            filter: blur(120px);
+            opacity: 0.15;
+            border-radius: 50%;
+            z-index: 0;
+            animation: pulse 15s infinite alternate ease-in-out;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.9); }
+            100% { transform: scale(1.15); }
+        }
+
+        /* Glassmorphism Cards - Enhanced */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 28px;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            padding: 2.75rem;
+            margin-bottom: 2rem;
+        }
+        .glass-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 35px 70px -15px rgba(221, 72, 20, 0.18);
+        }
+
+        /* Code Window - More Premium */
+        .code-window {
+            background: #1e1e1e;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 1px solid #333;
+        }
+        .code-header {
+            background: #2a2a2a;
+            padding: 12px 18px;
+            display: flex;
+            gap: 10px;
+        }
+        .dot { width: 13px; height: 13px; border-radius: 50%; }
+        .dot-red { background: #ff5f56; }
+        .dot-amber { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+
+        pre { 
+            margin: 0; 
+            padding: 24px; 
+            color: #a5d6ff; 
+            font-family: 'Fira Code', monospace;
+            font-size: 13.5px;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        /* Image Styling - Elevated */
+        .img-container {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            background: #fff;
+            transition: transform 0.4s ease;
+        }
+        .img-container:hover { transform: scale(1.03); }
+        .img-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, transparent 60%, rgba(13, 23, 42, 0.65) 100%);
+        }
+
+        /* Stats Counter */
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Developer Card */
+        .dev-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 5px solid var(--primary);
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(221,72,20,0.3);
+        }
+
+        /* Enhanced Keunggulan Section */
+        .feature-card {
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 24px;
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .feature-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px -15px rgba(221, 72, 20, 0.25);
+        }
+        .feature-icon {
+            width: 78px;
+            height: 78px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 25px rgba(221,72,20,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="hero-wrapper text-center overflow-hidden" id="hero">
+        <div class="hero-circle" style="width: 520px; height: 520px; top: -120px; left: -120px;"></div>
+        <div class="hero-circle" style="width: 380px; height: 380px; bottom: 30px; right: -80px;"></div>
+        
+        <div class="container position-relative" style="z-index: 2;">
+            <div data-aos="zoom-in" data-aos-duration="1200">
+                <img src="https://img.icons8.com/fluency/160/checked-laptop.png" alt="TRIADU Logo" class="mb-4" style="filter: drop-shadow(0 15px 25px rgba(221,72,20,0.5));">
+                <h1 class="display-2 fw-800 mb-3" style="letter-spacing: -2px;">
+                    UKK PAKET 3 <span class="text-warning">TRIADU</span>
+                </h1>
+                <p class="lead fs-3 mb-2 opacity-90">Sistem Pengaduan Sarana & Prasarana Sekolah</p>
+                <p class="lead opacity-75">Berbasis CodeIgniter 3 • MVC • Modern • Paperless</p>
+                
+                <div class="d-flex justify-content-center gap-3 flex-wrap mt-5">
+                    <span class="badge bg-white text-dark px-4 py-3 rounded-pill shadow-lg d-flex align-items-center">
+                        <i class="fab fa-php text-primary me-2 fs-4"></i> PHP 7.4+
+                    </span>
+                    <span class="badge bg-white text-dark px-4 py-3 rounded-pill shadow-lg d-flex align-items-center">
+                        <i class="fas fa-fire text-danger me-2 fs-4"></i> CodeIgniter 3.1.11
+                    </span>
+                    <span class="badge bg-white text-dark px-4 py-3 rounded-pill shadow-lg d-flex align-items-center">
+                        <i class="fas fa-database text-info me-2 fs-4"></i> MySQL 8.0
+                    </span>
+                </div>
+                
+                <div class="mt-5">
+                    <a href="https://drive.google.com/file/d/1erZNH8gqjMegl_ASkccnSw5Pr0EnF-8z/view?usp=sharing" target="_blank" 
+                       class="btn btn-light btn-lg px-5 py-3 rounded-pill shadow-lg fw-semibold">
+                        <i class="fab fa-google-drive me-2"></i> Tonton Video Demo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container mt-n5 position-relative" style="margin-top: -90px; z-index: 10;">
+        <div class="row g-4">
+            
+            <!-- LEFT COLUMN - MAIN CONTENT -->
+            <div class="col-lg-8">
+                
+                <!-- RINGKASAN -->
+                <div class="glass-card" data-aos="fade-up" id="ringkasan">
+                    <h3 class="fw-bold mb-4 border-bottom pb-3">📋 Ringkasan TRIADU</h3>
+                    <p class="lead">TRIADU bukan sekadar aplikasi pengaduan biasa. Ini adalah <strong>ekosistem digital lengkap</strong> yang menghubungkan siswa langsung dengan Unit Sarana & Prasarana sekolah. Dibangun dengan arsitektur <strong>MVC + HMVC</strong>, modular, scalable, dan siap dikembangkan lebih lanjut.</p>
+                    
+                    <div class="row text-center mt-5">
+                        <div class="col-4">
+                            <div class="bg-white p-4 rounded-4 shadow-sm">
+                                <h2 class="fw-bold text-primary mb-0">98<span class="fs-5">%</span></h2>
+                                <small class="text-uppercase">Kepuasan Siswa</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="bg-white p-4 rounded-4 shadow-sm">
+                                <h2 class="fw-bold text-success mb-0">1245</h2>
+                                <small class="text-uppercase">Laporan</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="bg-white p-4 rounded-4 shadow-sm">
+                                <h2 class="fw-bold text-info mb-0">456</h2>
+                                <small class="text-uppercase">Siswa Aktif</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROLE & WORKFLOW -->
+                <div class="glass-card" data-aos="fade-up" id="role">
+                    <h3 class="fw-bold mb-5 border-bottom pb-3">🎭 Role & Workflow</h3>
+                    
+                    <div class="mb-5 border-start border-5 border-primary ps-5">
+                        <span class="badge bg-primary px-4 py-2 rounded-pill">Public Access</span>
+                        <h4 class="fw-bold mt-3">Landing Page Guest</h4>
+                        <p class="text-muted">Rekam jejak pengaduan yang sudah selesai — transparansi untuk orang tua & wali.</p>
+                        <div class="img-container mt-4">
+                            <img src="https://i.ibb.co.com/HTMXMCZw/welcomeguest.png" class="w-100" alt="Guest UI">
+                            <div class="img-overlay"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-5 border-start border-5 border-info ps-5">
+                        <span class="badge bg-info px-4 py-2 rounded-pill">Reporter Role</span>
+                        <h4 class="fw-bold mt-3">Dashboard Siswa</h4>
+                        <p class="text-muted">Submit laporan lengkap dengan foto bukti + kategori kerusakan real-time.</p>
+                        <div class="img-container mt-4">
+                            <img src="https://i.ibb.co.com/9mTnMKXW/siswa.png" class="w-100" alt="Siswa UI">
+                            <div class="img-overlay"></div>
+                        </div>
+                    </div>
+
+                    <div class="border-start border-5 border-dark ps-5">
+                        <span class="badge bg-dark px-4 py-2 rounded-pill">Superuser Role</span>
+                        <h4 class="fw-bold mt-3">Admin Back-Office</h4>
+                        <p class="text-muted">Kelola semua laporan, cetak PDF/Excel, balas siswa, dan analisis data.</p>
+                        <div class="img-container mt-4">
+                            <img src="https://i.ibb.co.com/1GKMky9K/admin.png" class="w-100" alt="Admin UI">
+                            <div class="img-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIDEO DEMO -->
+                <div class="glass-card text-center" data-aos="zoom-in" id="demo">
+                    <iframe src="https://drive.google.com/file/d/1erZNH8gqjMegl_ASkccnSw5Pr0EnF-8z/preview" width="740" height="500" allow="autoplay"></iframe>
+                    <h4 class="fw-bold mb-3">Lihat Demo Lengkap TRIADU</h4>
+                    <p class="mb-4">Penjelasan alur coding + demo aplikasi live (durasi 10 menit)</p>
+                    <a href="https://drive.google.com/file/d/1erZNH8gqjMegl_ASkccnSw5Pr0EnF-8z/view?usp=sharing" target="_blank" 
+                       class="btn btn-primary btn-lg px-6 py-3 rounded-pill shadow">
+                        <i class="fab fa-google-drive me-3"></i> Buka Video Preview
+                    </a>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div class="col-lg-4">
+
+                <!-- DEVELOPER PROFILE -->
+                <div class="glass-card text-center" data-aos="fade-left" data-aos-delay="250">
+                    <img src="https://i.ibb.co.com/HTMXMCZw/welcomeguest.png" alt="Syahril Maimubdy Mandai" 
+                         class="dev-avatar mx-auto mb-4">
+                    <h5 class="fw-bold">Syahril Maimubdy Mandai</h5>
+                    <p class="text-muted small mb-3">Developer • UKK Paket 3<br>SMK Tritech Informatika Medan</p>
+                    
+                    <a href="https://www.instagram.com/syahrilmaimubdymandai/" target="_blank"
+                       class="btn btn-outline-dark rounded-pill px-5 py-2">
+                        <i class="fab fa-instagram me-2"></i> Follow @syahrilmaimubdymandai
+                    </a>
+                </div>
+
+                <!-- Technology Stack -->
+                <div class="glass-card" data-aos="fade-left">
+                    <h5 class="fw-bold mb-4"><i class="fas fa-layer-group me-2 text-primary"></i> Technology Stack</h5>
+                    <div class="d-flex flex-column gap-3">
+                        <div class="d-flex align-items-center bg-white p-4 rounded-4 shadow-sm">
+                            <i class="fab fa-html5 text-danger fa-3x me-4"></i>
+                            <div>
+                                <div class="fw-bold fs-5">HTML5</div>
+                                <small class="text-muted">Structure & Semantic Markup</small>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center bg-white p-4 rounded-4 shadow-sm">
+                            <i class="fab fa-css3-alt text-primary fa-3x me-4"></i>
+                            <div>
+                                <div class="fw-bold fs-5">CSS3</div>
+                                <small class="text-muted">Styling & Layout Design</small>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center bg-white p-4 rounded-4 shadow-sm">
+                            <i class="fab fa-js-square text-warning fa-3x me-4"></i>
+                            <div>
+                                <div class="fw-bold fs-5">JavaScript</div>
+                                <small class="text-muted">Interactive Frontend Logic</small>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center bg-white p-4 rounded-4 shadow-sm">
+                            <i class="fab fa-bootstrap text-purple fa-3x me-4"></i>
+                            <div>
+                                <div class="fw-bold fs-5">Bootstrap 5</div>
+                                <small class="text-muted">Modern UI + Responsive</small>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center bg-white p-4 rounded-4 shadow-sm">
+                            <i class="fas fa-file-pdf text-danger fa-3x me-4"></i>
+                            <div>
+                                <div class="fw-bold fs-5">DomPDF</div>
+                                <small class="text-muted">Laporan PDF Instan</small>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center bg-white p-4 rounded-4 shadow-sm">
+                            <i class="fas fa-file-excel text-success fa-3x me-4"></i>
+                            <div>
+                                <div class="fw-bold fs-5">PhpSpreadsheet</div>
+                                <small class="text-muted">Export Excel Canggih</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <!-- Database Schema -->
+                <div class="glass-card" data-aos="fade-left" data-aos-delay="100">
+                    <h5 class="fw-bold mb-4"><i class="fas fa-database me-2 text-primary"></i> Database Schema</h5>
+                    <ul class="list-unstyled">
+                        <li class="workflow-step small mb-4">
+                            <strong>Table: <code>admin</code></strong><br>
+                            <span class="text-muted">id admin, username, & password</span>
+                        </li>
+                        <li class="workflow-step small mb-4">
+                            <strong>Table: <code>siswa</code></strong><br>
+                            <span class="text-muted">nis & kelas</span>
+                        </li>
+                        <li class="workflow-step small mb-4">
+                            <strong>Table: <code>kategori</code></strong><br>
+                            <span class="text-muted">id kategori, nama kategori</span>
+                        </li>
+                        <li class="workflow-step small mb-4">
+                            <strong>Table: <code>aspirasi</code></strong><br>
+                            <span class="text-muted">id aspirasi, id siswa, id kategori, lokasi, keterangan, gambar, tanggal, status, feedback, feedback gambar</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Code Snippet -->
+                <div class="glass-card p-0 overflow-hidden" data-aos="fade-left" data-aos-delay="150">
+                    <div class="code-window">
+                        <div class="code-header">
+                            <div class="dot dot-red"></div>
+                            <div class="dot dot-amber"></div>
+                            <div class="dot dot-green"></div>
+                        </div>
+                        <pre><code>// Get all aspirasi with join
+    public function get_all($limit = NULL, $category_id = NULL)
+    {
+        $this->_set_select_join();
+
+        // Filter by category if provided
+        if (!empty($category_id)) {
+            $this->db->where('a.id_kategori_syahrilmaimubdy', $category_id);
+        }
+
+        $this->db->order_by('a.tanggal_syahrilmaimubdy', 'DESC');
+
+        if ($limit) {
+            $this->db->limit($limit);
+        }
+
+        return $this->db->get()->result();
+    }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- REAL-TIME STATS -->
+                <div class="glass-card" data-aos="fade-left" data-aos-delay="200">
+                    <h5 class="fw-bold mb-4"><i class="fas fa-chart-bar me-2 text-primary"></i> Statistik Penggunaan</h5>
+                    <div class="row text-center g-3">
+                        <div class="col-6">
+                            <div class="stat-number" id="stat1">1245</div>
+                            <small class="text-muted">Pengaduan Masuk</small>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-number" id="stat2">456</div>
+                            <small class="text-muted">Siswa Terdaftar</small>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-number" id="stat3">98</div>
+                            <small class="text-muted">% Kepuasan</small>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-number" id="stat4">42</div>
+                            <small class="text-muted">Laporan Hari Ini</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="glass-card" data-aos="fade-left" data-aos-delay="250">
+                    <h5 class="fw-bold mb-4">
+                        <i class="fas fa-envelope me-2 text-primary"></i> Hubungi Kami
+                    </h5>
+
+                    <form id="waForm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="name" placeholder="Masukkan Nama" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Masukkan Email" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Pesan</label>
+                            <textarea class="form-control" id="message" placeholder="Masukkan Pesan" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 rounded-pill">
+                            Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+
+    <!-- KEUNGGULAN - VERSI SUPER PREMIUM -->
+    <section class="py-5 bg-white border-top border-bottom" id="keunggulan">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-down">
+                <span class="badge bg-primary px-5 py-3 rounded-pill fs-6 shadow">🚀 KEUNGGULAN TRIADU</span>
+                <h2 class="display-5 fw-bold mt-3 mb-3">Mengapa Harus TRIADU?</h2>
+                <p class="lead col-lg-7 mx-auto text-muted">Bukan sekadar aplikasi pengaduan — ini solusi profesional yang dirancang khusus untuk sekolah modern.</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Feature 1 -->
+                <div class="col-lg-3 col-md-6" data-aos="fade-up">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
+                        <h5 class="fw-bold mb-3">Keamanan Tingkat Bank</h5>
+                        <p class="text-muted small mb-4">Password di-hash dengan Bcrypt, proteksi CSRF, XSS, dan SQL Injection. Data siswa aman 100%.</p>
+                        <div class="d-flex justify-content-center gap-3 text-success small">
+                            <span><i class="fas fa-check"></i> Bcrypt</span>
+                            <span><i class="fas fa-check"></i> CSRF Token</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon"><i class="fas fa-bolt-lightning"></i></div>
+                        <h5 class="fw-bold mb-3">Super Fast Loading</h5>
+                        <p class="text-muted small mb-4">Query dioptimasi, lazy loading gambar, dan caching otomatis. Loading < 1 detik di semua device.</p>
+                        <div class="d-flex justify-content-center gap-3 text-success small">
+                            <span><i class="fas fa-check"></i> Index DB</span>
+                            <span><i class="fas fa-check"></i> Lazy Load</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon"><i class="fas fa-mobile-screen"></i></div>
+                        <h5 class="fw-bold mb-3">Mobile-First Experience</h5>
+                        <p class="text-muted small mb-4">Tampilan sempurna di HP, tablet, maupun desktop. Siswa bisa lapor dari mana saja kapan saja.</p>
+                        <div class="d-flex justify-content-center gap-3 text-success small">
+                            <span><i class="fas fa-check"></i> Bootstrap 5</span>
+                            <span><i class="fas fa-check"></i> Touch Friendly</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                        <h5 class="fw-bold mb-3">Data Analytics Real-time</h5>
+                        <p class="text-muted small mb-4">Grafik laporan, export PDF/Excel, dan insight cepat untuk kepala sekolah & sarana.</p>
+                        <div class="d-flex justify-content-center gap-3 text-success small">
+                            <span><i class="fas fa-check"></i> Chart.js</span>
+                            <span><i class="fas fa-check"></i> Excel Export</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-5 text-white text-center">
+        <div class="container py-4">
+            <h3 class="fw-bold mb-3">Siap Deploy TRIADU?</h3>
+            <p class="opacity-75 mb-4">PHP 7.4+ • MySQL 8.0 • Server Shared/VPS sudah cukup</p>
+            
+            <div class="d-flex justify-content-center gap-4 mb-5">
+                <a href="https://github.com/SyamayDev/ukk_pengaduan" target="_blank" class="btn btn-outline-light px-5 py-3 rounded-pill">
+                    <i class="fab fa-github me-2"></i> GitHub
+                </a>
+                <a href="https://www.instagram.com/syahrilmaimubdymandai/" target="_blank" class="btn btn-outline-light px-5 py-3 rounded-pill">
+                    <i class="fab fa-instagram me-2"></i> Instagram
+                </a>
+            </div>
+            
+            <div class="small opacity-50">
+                &copy; 2026 TRIADU • Dibuat dengan ❤️ oleh Syahril Maimubdy Mandai<br>
+                Project UKK Rekayasa Perangkat Lunak
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    
+    <script>
+        // AOS Init
+        AOS.init({ duration: 900, once: true });
+
+        // Counter Animation
+        function animateValue(id, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                document.getElementById(id).innerHTML = value;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    document.getElementById(id).innerHTML = end;
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Trigger counters
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateValue("stat1", 0, 1245, 2200);
+                    animateValue("stat2", 0, 456, 2100);
+                    animateValue("stat3", 0, 98, 1800);
+                    animateValue("stat4", 0, 42, 2000);
+                    observer.disconnect();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(document.querySelector('#stat1').parentElement.parentElement);
+
+        // Confetti on load
+        window.onload = () => {
+            const duration = 2800;
+            const end = Date.now() + duration;
+            const colors = ['#DD4814', '#005C84', '#ffffff'];
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 70,
+                    origin: { x: 0 },
+                    colors: colors
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 70,
+                    origin: { x: 1 },
+                    colors: colors
+                });
+
+                if (Date.now() < end) requestAnimationFrame(frame);
+            })();
+        };
+    </script>
+    <script>
+document.getElementById("waForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let nama = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let pesan = document.getElementById("message").value;
+
+    let nomorWA = "6282267403010"; // tanpa + dan tanpa spasi
+
+    let text = 
+`Halo, saya ingin menghubungi Anda:
+
+Nama: ${nama}
+Email: ${email}
+Pesan: ${pesan}`;
+
+    let url = `https://wa.me/${nomorWA}?text=${encodeURIComponent(text)}`;
+
+    window.open(url, "_blank");
+});
+</script>
+</body>
+</html>
