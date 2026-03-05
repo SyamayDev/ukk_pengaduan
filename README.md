@@ -1,4 +1,4 @@
-<h1 align="center">📌 Sistem Informasi Pengaduan Sarana & Prasarana Sekolah</h1>
+<h1 align="center">📌 Pengembangan Aplikasi Pengaduan Sarana Sekolah</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/CodeIgniter-DD4814?style=for-the-badge&logo=codeigniter&logoColor=white"/>
