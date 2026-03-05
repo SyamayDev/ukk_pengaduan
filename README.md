@@ -48,7 +48,7 @@ dan terdokumentasi dengan baik.
 </ul>
 
 <p><b>Screenshot Halaman Guest:</b></p>
-<img src="https://ibb.co.com/tpN3NzRj" width="800"/>
+<img src="https://i.ibb.co.com/HTMXMCZw/welcomeguest.png" width="800"/>
 
 <hr>
 
@@ -62,7 +62,7 @@ dan terdokumentasi dengan baik.
 </ul>
 
 <p><b>Screenshot Dashboard Siswa:</b></p>
-<img src="https://ibb.co.com/JW7nh6LH" width="800"/>
+<img src="https://i.ibb.co.com/9mTnMKXW/siswa.png" width="800"/>
 
 <hr>
 
@@ -78,7 +78,7 @@ dan terdokumentasi dengan baik.
 </ul>
 
 <p><b>Screenshot Dashboard Admin:</b></p>
-<img src="https://ibb.co.com/Jj2q96z2" width="800"/>
+<img src="https://i.ibb.co.com/1GKMky9K/admin.png" width="800"/>
 
 <hr>
 
