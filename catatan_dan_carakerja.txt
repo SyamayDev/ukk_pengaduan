@@ -1,0 +1,52 @@
+username admin : admin
+password admin : admin123
+
+Proyek ini dibuat menggunakan framework CodeIgniter, sebuah kerangka kerja PHP yang populer untuk membangun aplikasi web. Tujuannya adalah untuk memfasilitasi proses pengaduan terkait sarana dan prasarana di lingkungan sekolah.
+
+Aplikasi ini memiliki tiga peran pengguna utama:
+
+Tamu (Guest): Pengguna umum yang bisa melihat laporan pengaduan yang sudah masuk tanpa perlu login.
+Siswa: Pengguna terdaftar (dalam hal ini siswa) yang bisa login untuk mengirimkan laporan pengaduan baru dan melihat riwayat pengaduannya.
+Admin: Pengelola aplikasi yang bertugas untuk memverifikasi, menindaklanjuti, dan memberi tanggapan atas semua pengaduan yang masuk.
+Cara Kerja Aplikasi (Alur Proses)
+Halaman Awal (Guest View)
+
+Saat aplikasi pertama kali diakses, pengguna akan disambut sebagai Tamu.
+Di halaman ini (application/views/welcome_guest.php), ditampilkan daftar pengaduan (aspirasi) yang statusnya sudah diproses atau bersifat publik.
+Tamu bisa melihat detail pengaduan tetapi tidak bisa membuat pengaduan baru. Ada tombol untuk menuju halaman login.
+Login (Autentikasi)
+
+Siswa dan Admin akan login melalui halaman yang sama (application/views/auth/).
+Sistem akan memeriksa username dan password yang dimasukkan ke database menggunakan model M_login.php.
+Setelah berhasil login, sistem akan mengarahkan pengguna ke halaman yang sesuai dengan perannya (halaman Siswa atau halaman Admin).
+Halaman Siswa (Setelah Login)
+
+Membuat Pengaduan: Siswa bisa mengisi formulir pengaduan baru. Data yang diisi biasanya berupa judul, isi laporan, kategori, dan foto bukti.
+Proses: Data dari formulir akan dikirim ke controller Siswa.php, kemudian disimpan ke dalam database melalui model Siswa_model.php atau Aspirasi_model.php. Jika ada file foto yang diunggah, file tersebut akan disimpan di folder uploads/aspirasi/.
+Melihat Riwayat: Siswa dapat melihat daftar pengaduan yang pernah ia kirimkan beserta statusnya (misalnya: "Menunggu", "Diproses", "Selesai").
+Halaman Admin (Setelah Login)
+
+Dashboard: Admin akan melihat ringkasan jumlah pengaduan, kategori, dan data penting lainnya.
+Manajemen Pengaduan: Admin dapat melihat seluruh pengaduan yang masuk dari semua siswa.
+Aksi Admin: Admin memiliki wewenang untuk:
+Mengubah Status: Mengubah status pengaduan dari "Menunggu" menjadi "Diproses" atau "Selesai".
+Memberi Tanggapan: Menuliskan balasan atau feedback untuk sebuah pengaduan.
+Melihat Detail: Melihat detail lengkap pengaduan, termasuk foto bukti.
+Generate Laporan: Admin bisa membuat laporan dalam bentuk PDF atau Excel dari semua data pengaduan yang ada. Fitur ini diatur oleh controller Laporan.php.
+Manajemen Kategori: Admin dapat menambah atau mengubah kategori pengaduan (misalnya: "Kerusakan Kelas", "Fasilitas Olahraga", "Kebersihan").
+Struktur Folder Penting
+application/controllers/: Logika utama aplikasi.
+Welcome.php: Mengatur halaman awal untuk tamu.
+Siswa.php: Mengatur semua aksi yang bisa dilakukan siswa.
+Admin.php: Mengatur semua aksi yang bisa dilakukan admin.
+Laporan.php: Untuk membuat laporan (print/export).
+application/models/: Berinteraksi dengan database.
+M_login.php: Untuk proses verifikasi login.
+Siswa_model.php & Admin_model.php: Mengambil atau menyimpan data sesuai peran.
+Aspirasi_model.php: Mengelola data utama,yaitu pengaduan/aspirasi.
+application/views/: Menampilkan halaman web.
+welcome_guest.php: Halaman utama untuk pengunjung.
+auth/: Halaman untuk login.
+siswa/: Halaman-halaman khusus untuk siswa.
+admin/: Halaman-halaman khusus untuk admin.
+uploads/aspirasi/:Tempat menyimpan file gambar/foto yang diunggah saat membuat pengaduan.

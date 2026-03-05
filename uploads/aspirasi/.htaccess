@@ -1,0 +1,11 @@
+# permit public access to images but block any executable files
+<IfModule authz_core_module>
+    <FilesMatch "\.(php|php5|phtml)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+<IfModule !authz_core_module>
+    <FilesMatch "\.(php|php5|phtml)$">
+        Deny from all
+    </FilesMatch>
+</IfModule>
