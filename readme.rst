@@ -1,212 +1,142 @@
-📌 Sistem Informasi Pengaduan Sarana & Prasarana Sekolah
-
-
-
-[![CodeIgniter](https://img.shields.io/badge/CodeIgniter-DD4814?style=for-the-badge&logo=codeigniter&logoColor=white)](#)
-[![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)](#)
-[![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)](#)
-
-
-
-
-Sistem Informasi Pengaduan Sarana & Prasarana Sekolah adalah aplikasi berbasis web yang dibangun menggunakan Framework CodeIgniter.
-
-Aplikasi ini bertujuan untuk mempermudah siswa dalam menyampaikan laporan terkait kerusakan atau permasalahan fasilitas sekolah, serta membantu admin dalam mengelola dan menindaklanjuti laporan tersebut secara sistematis dan terdokumentasi.
-
-🎯 Tujuan Aplikasi
-
-Mempermudah proses pengaduan fasilitas sekolah
-
-Meningkatkan transparansi laporan
-
-Mempermudah monitoring status pengaduan
-
-Mengelola data laporan secara terstruktur
-
-Menyediakan fitur export laporan (PDF / Excel)
-
-👥 Role / Hak Akses Pengguna
-
-Aplikasi ini memiliki 3 peran utama, yaitu:
-
-1️⃣ Tamu (Guest)
-
-Pengguna umum yang belum login.
-
-Hak Akses:
-
-Melihat daftar pengaduan yang sudah diproses / dipublikasikan
-
-Melihat detail pengaduan
-
-Tidak bisa membuat laporan
-
-Tersedia tombol login
-
-📷 Screenshot Halaman Guest
-
-https://ibb.co.com/tpN3NzRj
-
-2️⃣ Siswa
-
-Pengguna terdaftar yang dapat login dan membuat laporan.
-
-Hak Akses:
-
-Login ke sistem
-
-Membuat pengaduan baru
-
-Upload foto bukti
-
-Melihat riwayat pengaduan
-
-Melihat status laporan:
-
-Menunggu
-
-Diproses
-
-Selesai
-
-📷 Screenshot Dashboard Siswa
-
-https://ibb.co.com/JW7nh6LH
-
-3️⃣ Admin
-
-Pengelola sistem yang memiliki kontrol penuh terhadap data pengaduan.
-
-Hak Akses:
-
-Login sebagai admin
-
-Melihat semua pengaduan dari seluruh siswa
-
-Mengubah status pengaduan
-
-Memberi tanggapan
-
-Mengelola kategori
-
-Generate laporan PDF
-
-Export laporan Excel
-
-📷 Screenshot Dashboard Admin
-
-https://ibb.co.com/Jj2q96z2
-
-🔐 Informasi Login Default
-Username Admin : admin
-Password Admin : admin123
-
-⚠️ Disarankan untuk mengganti password setelah deploy.
-
-⚙️ Cara Kerja Aplikasi (Alur Sistem)
-
-Berikut adalah alur sistem dari awal hingga laporan selesai:
-
-1️⃣ Halaman Awal (Guest View)
-
-Saat pertama kali membuka aplikasi, pengguna akan diarahkan ke halaman:
-
-application/views/welcome_guest.php
-
-Sistem menampilkan daftar pengaduan yang sudah diproses.
-
-Pengguna dapat melihat detail laporan.
-
-Tersedia tombol login untuk siswa/admin.
-
-2️⃣ Proses Login (Autentikasi)
-
-File terkait:
-
-application/models/M_login.php
-application/views/auth/
-Alur:
-
-User memasukkan username & password
-
-Sistem memverifikasi ke database
-
-Jika berhasil:
-
-Siswa → diarahkan ke dashboard siswa
-
-Admin → diarahkan ke dashboard admin
-
-Jika gagal → tampil pesan error
-
-3️⃣ Proses Siswa Membuat Pengaduan
-
-Controller:
-
-application/controllers/Siswa.php
-
-Model:
-
-application/models/Siswa_model.php
-application/models/Aspirasi_model.php
-Langkah:
-
-Siswa mengisi:
-
-Judul
-
-Isi laporan
-
-Kategori
-
-Upload foto bukti
-
-Data dikirim ke controller
-
-Sistem menyimpan data ke database
-
-Foto disimpan di:
-
-uploads/aspirasi/
-
-Status awal otomatis: Menunggu
-
-4️⃣ Proses Admin Menindaklanjuti
-
-Controller:
-
-application/controllers/Admin.php
-Admin dapat:
-
-Melihat semua laporan
-
-Membuka detail laporan
-
-Mengubah status menjadi:
-
-Diproses
-
-Selesai
-
-Memberikan tanggapan
-
-Menghapus laporan jika diperlukan
-
-5️⃣ Generate Laporan
-
-Controller:
-
-application/controllers/Laporan.php
-
-Fitur:
-
-Export ke PDF
-
-Export ke Excel
-
-Cetak laporan
-
-🗂️ Struktur Folder Penting
+<h1 align="center">📌 Sistem Informasi Pengaduan Sarana & Prasarana Sekolah</h1>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/CodeIgniter-DD4814?style=for-the-badge&logo=codeigniter&logoColor=white"/>
+  <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white"/>
+  <img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white"/>
+</p>
+
+<hr>
+
+<h2>📖 Deskripsi Proyek</h2>
+
+<p>
+Sistem Informasi Pengaduan Sarana & Prasarana Sekolah adalah aplikasi berbasis web 
+yang dibangun menggunakan <b>Framework CodeIgniter 3</b> dengan arsitektur 
+<b>MVC (Model-View-Controller)</b>.
+</p>
+
+<p>
+Aplikasi ini dirancang untuk mempermudah siswa dalam menyampaikan laporan 
+terkait kerusakan atau permasalahan fasilitas sekolah, serta membantu admin 
+dalam mengelola dan menindaklanjuti laporan secara sistematis, transparan, 
+dan terdokumentasi dengan baik.
+</p>
+
+<hr>
+
+<h2>🎯 Tujuan Aplikasi</h2>
+
+<ul>
+  <li>Mempermudah proses pengaduan fasilitas sekolah</li>
+  <li>Meningkatkan transparansi laporan</li>
+  <li>Mempermudah monitoring status pengaduan</li>
+  <li>Mengelola data laporan secara terstruktur</li>
+  <li>Menyediakan fitur export laporan (PDF & Excel)</li>
+</ul>
+
+<hr>
+
+<h2>👥 Role / Hak Akses Pengguna</h2>
+
+<h3>1️⃣ Tamu (Guest)</h3>
+<ul>
+  <li>Melihat daftar pengaduan yang sudah diproses</li>
+  <li>Melihat detail pengaduan</li>
+  <li>Tidak dapat membuat laporan</li>
+  <li>Tersedia tombol login</li>
+</ul>
+
+<p><b>Screenshot Halaman Guest:</b></p>
+<img src="https://ibb.co.com/tpN3NzRj" width="800"/>
+
+<hr>
+
+<h3>2️⃣ Siswa</h3>
+<ul>
+  <li>Login ke sistem</li>
+  <li>Membuat pengaduan baru</li>
+  <li>Upload foto bukti</li>
+  <li>Melihat riwayat pengaduan</li>
+  <li>Status laporan: Menunggu, Diproses, Selesai</li>
+</ul>
+
+<p><b>Screenshot Dashboard Siswa:</b></p>
+<img src="https://ibb.co.com/JW7nh6LH" width="800"/>
+
+<hr>
+
+<h3>3️⃣ Admin</h3>
+<ul>
+  <li>Login sebagai admin</li>
+  <li>Melihat seluruh pengaduan</li>
+  <li>Mengubah status laporan</li>
+  <li>Memberikan tanggapan</li>
+  <li>Mengelola kategori</li>
+  <li>Generate laporan PDF</li>
+  <li>Export laporan Excel</li>
+</ul>
+
+<p><b>Screenshot Dashboard Admin:</b></p>
+<img src="https://ibb.co.com/Jj2q96z2" width="800"/>
+
+<hr>
+
+<h2>🔐 Informasi Login Default</h2>
+
+<pre>
+Username : admin
+Password : admin123
+</pre>
+
+<p><i>Disarankan untuk mengganti password setelah deploy.</i></p>
+
+<hr>
+
+<h2>⚙️ Cara Kerja Sistem</h2>
+
+<h3>1️⃣ Halaman Awal (Guest View)</h3>
+<ul>
+  <li>File: <code>application/views/welcome_guest.php</code></li>
+  <li>Menampilkan daftar pengaduan yang sudah diproses</li>
+  <li>Pengguna dapat melihat detail laporan</li>
+</ul>
+
+<h3>2️⃣ Proses Login (Autentikasi)</h3>
+<ul>
+  <li>Model: <code>application/models/M_login.php</code></li>
+  <li>View: <code>application/views/auth/</code></li>
+  <li>Sistem memverifikasi username dan password ke database</li>
+  <li>Redirect berdasarkan role (Siswa / Admin)</li>
+</ul>
+
+<h3>3️⃣ Proses Siswa Membuat Pengaduan</h3>
+<ul>
+  <li>Controller: <code>application/controllers/Siswa.php</code></li>
+  <li>Model: <code>Siswa_model.php</code> & <code>Aspirasi_model.php</code></li>
+  <li>Upload gambar disimpan di: <code>uploads/aspirasi/</code></li>
+  <li>Status awal otomatis: <b>Menunggu</b></li>
+</ul>
+
+<h3>4️⃣ Proses Admin Menindaklanjuti</h3>
+<ul>
+  <li>Controller: <code>application/controllers/Admin.php</code></li>
+  <li>Mengubah status menjadi Diproses / Selesai</li>
+  <li>Memberikan tanggapan</li>
+</ul>
+
+<h3>5️⃣ Generate Laporan</h3>
+<ul>
+  <li>Controller: <code>application/controllers/Laporan.php</code></li>
+  <li>Export ke PDF</li>
+  <li>Export ke Excel</li>
+</ul>
+
+<hr>
+
+<h2>🗂️ Struktur Folder Penting</h2>
+
+<pre>
 application/
 │
 ├── controllers/
@@ -229,106 +159,73 @@ application/
 │
 uploads/
 └── aspirasi/
-🛠️ Teknologi yang Digunakan
+</pre>
 
-PHP
+<hr>
 
-CodeIgniter 3
+<h2>🛠️ Teknologi yang Digunakan</h2>
 
-MySQL
+<ul>
+  <li>PHP</li>
+  <li>CodeIgniter 3</li>
+  <li>MySQL</li>
+  <li>Bootstrap</li>
+  <li>HTML5 & CSS3</li>
+  <li>JavaScript</li>
+</ul>
 
-Bootstrap
+<hr>
 
-HTML5 & CSS3
+<h2>🚀 Cara Instalasi</h2>
 
-JavaScript
+<ol>
+  <li>Clone repository:
+    <pre>git clone https://github.com/SyamayDev/ukk_pengaduan.git</pre>
+  </li>
+  <li>Pindahkan ke folder server (htdocs / www)</li>
+  <li>Import database melalui phpMyAdmin</li>
+  <li>Konfigurasi file:
+    <code>application/config/database.php</code>
+  </li>
+  <li>Jalankan di browser:
+    <pre>http://localhost/ukk_pengaduan</pre>
+  </li>
+</ol>
 
-Library PDF & Excel Export
+<hr>
 
-🧩 Struktur Database (Gambaran Umum)
+<h2>🔒 Keamanan</h2>
 
-Tabel utama yang digunakan:
+<ul>
+  <li>Session-based login</li>
+  <li>Role-based access control</li>
+  <li>Validasi input form</li>
+  <li>Pembatasan upload file</li>
+</ul>
 
-users
+<hr>
 
-aspirasi
+<h2>📌 Pengembangan Selanjutnya</h2>
 
-kategori
+<ul>
+  <li>Notifikasi Email</li>
+  <li>Dashboard Grafik Statistik</li>
+  <li>Sistem Rating Kepuasan</li>
+  <li>Upload Multiple Images</li>
+  <li>REST API Version</li>
+</ul>
 
-tanggapan
+<hr>
 
-Relasi:
+<h2>📄 Lisensi</h2>
 
-1 user (siswa) dapat memiliki banyak aspirasi
+<p>
+Project ini dibuat untuk kebutuhan UKK dan pembelajaran. 
+Bebas digunakan dan dikembangkan kembali untuk tujuan edukasi.
+</p>
 
-1 aspirasi memiliki 1 kategori
+<hr>
 
-1 aspirasi dapat memiliki 1 tanggapan dari admin
-
-📷 Tambahkan ERD di sini
-
-![ERD](assets/images/erd.png)
-🚀 Cara Instalasi
-1️⃣ Clone Repository
-git clone https://github.com/SyamayDev/ukk_pengaduan.git
-2️⃣ Pindahkan ke Folder Server
-
-Jika menggunakan:
-
-XAMPP → htdocs
-
-Laragon → www
-
-3️⃣ Import Database
-
-Buka phpMyAdmin
-
-Import file .sql
-
-4️⃣ Atur Konfigurasi Database
-
-File:
-
-application/config/database.php
-
-Sesuaikan:
-
-'hostname' => 'localhost',
-'username' => 'root',
-'password' => '',
-'database' => 'nama_database',
-5️⃣ Jalankan di Browser
-http://localhost/ukk_pengaduan
-
-📊 ERD Sistem
-
-https://ibb.co.com/gMQ340rN
-
-🔒 Keamanan
-
-Session login
-
-Role-based access control
-
-Validasi form
-
-Upload file restriction
-
-Redirect jika belum login
-
-📌 Pengembangan Selanjutnya
-
-Notifikasi email
-
-Dashboard grafik statistik
-
-Sistem rating kepuasan
-
-Upload multiple images
-
-REST API version
-
-📄 Lisensi
-
-Project ini dibuat untuk kebutuhan UKK dan pembelajaran.
-Bebas digunakan dan dikembangkan kembali.
+<p align="center">
+⭐ Jika project ini membantu, jangan lupa beri star di repository ⭐
+</p>
