@@ -1,70 +1,334 @@
-###################
-What is CodeIgniter
-###################
+📌 Sistem Informasi Pengaduan Sarana & Prasarana Sekolah
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
 
-*******************
-Release Information
-*******************
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+[![CodeIgniter](https://img.shields.io/badge/CodeIgniter-DD4814?style=for-the-badge&logo=codeigniter&logoColor=white)](#)
+[![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)](#)
+[![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)](#)
 
-**************************
-Changelog and New Features
-**************************
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
 
-*******************
-Server Requirements
-*******************
 
-PHP version 5.6 or newer is recommended.
+Sistem Informasi Pengaduan Sarana & Prasarana Sekolah adalah aplikasi berbasis web yang dibangun menggunakan Framework CodeIgniter.
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+Aplikasi ini bertujuan untuk mempermudah siswa dalam menyampaikan laporan terkait kerusakan atau permasalahan fasilitas sekolah, serta membantu admin dalam mengelola dan menindaklanjuti laporan tersebut secara sistematis dan terdokumentasi.
 
-************
-Installation
-************
+🎯 Tujuan Aplikasi
 
-Please see the `installation section <https://codeigniter.com/user_guide/installation/index.html>`_
-of the CodeIgniter User Guide.
+Mempermudah proses pengaduan fasilitas sekolah
 
-*******
-License
-*******
+Meningkatkan transparansi laporan
 
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
+Mempermudah monitoring status pengaduan
 
-*********
-Resources
-*********
+Mengelola data laporan secara terstruktur
 
--  `User Guide <https://codeigniter.com/docs>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
+Menyediakan fitur export laporan (PDF / Excel)
 
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
+👥 Role / Hak Akses Pengguna
 
-***************
-Acknowledgement
-***************
+Aplikasi ini memiliki 3 peran utama, yaitu:
 
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
+1️⃣ Tamu (Guest)
+
+Pengguna umum yang belum login.
+
+Hak Akses:
+
+Melihat daftar pengaduan yang sudah diproses / dipublikasikan
+
+Melihat detail pengaduan
+
+Tidak bisa membuat laporan
+
+Tersedia tombol login
+
+📷 Screenshot Halaman Guest
+
+https://ibb.co.com/tpN3NzRj
+
+2️⃣ Siswa
+
+Pengguna terdaftar yang dapat login dan membuat laporan.
+
+Hak Akses:
+
+Login ke sistem
+
+Membuat pengaduan baru
+
+Upload foto bukti
+
+Melihat riwayat pengaduan
+
+Melihat status laporan:
+
+Menunggu
+
+Diproses
+
+Selesai
+
+📷 Screenshot Dashboard Siswa
+
+https://ibb.co.com/JW7nh6LH
+
+3️⃣ Admin
+
+Pengelola sistem yang memiliki kontrol penuh terhadap data pengaduan.
+
+Hak Akses:
+
+Login sebagai admin
+
+Melihat semua pengaduan dari seluruh siswa
+
+Mengubah status pengaduan
+
+Memberi tanggapan
+
+Mengelola kategori
+
+Generate laporan PDF
+
+Export laporan Excel
+
+📷 Screenshot Dashboard Admin
+
+https://ibb.co.com/Jj2q96z2
+
+🔐 Informasi Login Default
+Username Admin : admin
+Password Admin : admin123
+
+⚠️ Disarankan untuk mengganti password setelah deploy.
+
+⚙️ Cara Kerja Aplikasi (Alur Sistem)
+
+Berikut adalah alur sistem dari awal hingga laporan selesai:
+
+1️⃣ Halaman Awal (Guest View)
+
+Saat pertama kali membuka aplikasi, pengguna akan diarahkan ke halaman:
+
+application/views/welcome_guest.php
+
+Sistem menampilkan daftar pengaduan yang sudah diproses.
+
+Pengguna dapat melihat detail laporan.
+
+Tersedia tombol login untuk siswa/admin.
+
+2️⃣ Proses Login (Autentikasi)
+
+File terkait:
+
+application/models/M_login.php
+application/views/auth/
+Alur:
+
+User memasukkan username & password
+
+Sistem memverifikasi ke database
+
+Jika berhasil:
+
+Siswa → diarahkan ke dashboard siswa
+
+Admin → diarahkan ke dashboard admin
+
+Jika gagal → tampil pesan error
+
+3️⃣ Proses Siswa Membuat Pengaduan
+
+Controller:
+
+application/controllers/Siswa.php
+
+Model:
+
+application/models/Siswa_model.php
+application/models/Aspirasi_model.php
+Langkah:
+
+Siswa mengisi:
+
+Judul
+
+Isi laporan
+
+Kategori
+
+Upload foto bukti
+
+Data dikirim ke controller
+
+Sistem menyimpan data ke database
+
+Foto disimpan di:
+
+uploads/aspirasi/
+
+Status awal otomatis: Menunggu
+
+4️⃣ Proses Admin Menindaklanjuti
+
+Controller:
+
+application/controllers/Admin.php
+Admin dapat:
+
+Melihat semua laporan
+
+Membuka detail laporan
+
+Mengubah status menjadi:
+
+Diproses
+
+Selesai
+
+Memberikan tanggapan
+
+Menghapus laporan jika diperlukan
+
+5️⃣ Generate Laporan
+
+Controller:
+
+application/controllers/Laporan.php
+
+Fitur:
+
+Export ke PDF
+
+Export ke Excel
+
+Cetak laporan
+
+🗂️ Struktur Folder Penting
+application/
+│
+├── controllers/
+│   ├── Welcome.php
+│   ├── Siswa.php
+│   ├── Admin.php
+│   └── Laporan.php
+│
+├── models/
+│   ├── M_login.php
+│   ├── Siswa_model.php
+│   ├── Admin_model.php
+│   └── Aspirasi_model.php
+│
+├── views/
+│   ├── welcome_guest.php
+│   ├── auth/
+│   ├── siswa/
+│   └── admin/
+│
+uploads/
+└── aspirasi/
+🛠️ Teknologi yang Digunakan
+
+PHP
+
+CodeIgniter 3
+
+MySQL
+
+Bootstrap
+
+HTML5 & CSS3
+
+JavaScript
+
+Library PDF & Excel Export
+
+🧩 Struktur Database (Gambaran Umum)
+
+Tabel utama yang digunakan:
+
+users
+
+aspirasi
+
+kategori
+
+tanggapan
+
+Relasi:
+
+1 user (siswa) dapat memiliki banyak aspirasi
+
+1 aspirasi memiliki 1 kategori
+
+1 aspirasi dapat memiliki 1 tanggapan dari admin
+
+📷 Tambahkan ERD di sini
+
+![ERD](assets/images/erd.png)
+🚀 Cara Instalasi
+1️⃣ Clone Repository
+git clone https://github.com/SyamayDev/ukk_pengaduan.git
+2️⃣ Pindahkan ke Folder Server
+
+Jika menggunakan:
+
+XAMPP → htdocs
+
+Laragon → www
+
+3️⃣ Import Database
+
+Buka phpMyAdmin
+
+Import file .sql
+
+4️⃣ Atur Konfigurasi Database
+
+File:
+
+application/config/database.php
+
+Sesuaikan:
+
+'hostname' => 'localhost',
+'username' => 'root',
+'password' => '',
+'database' => 'nama_database',
+5️⃣ Jalankan di Browser
+http://localhost/ukk_pengaduan
+
+📊 ERD Sistem
+
+https://ibb.co.com/gMQ340rN
+
+🔒 Keamanan
+
+Session login
+
+Role-based access control
+
+Validasi form
+
+Upload file restriction
+
+Redirect jika belum login
+
+📌 Pengembangan Selanjutnya
+
+Notifikasi email
+
+Dashboard grafik statistik
+
+Sistem rating kepuasan
+
+Upload multiple images
+
+REST API version
+
+📄 Lisensi
+
+Project ini dibuat untuk kebutuhan UKK dan pembelajaran.
+Bebas digunakan dan dikembangkan kembali.
